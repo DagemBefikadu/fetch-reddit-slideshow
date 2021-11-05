@@ -3,6 +3,7 @@ const requestUrl = "http://www.reddit.com/search.json?q=";
 document.addEventListener("DOMContentLoaded", () => {
   let arrayUrl = [];
   let newImage = document.createElement('img')
+  let interval
   form.addEventListener("submit", (e) => {
     myFunction();
     myTitle();
@@ -31,7 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // newImage.src = sortedArray[]
         document.querySelector('.photolist').appendChild(newImage)
         console.log(arrayUrl);
-        setInterval(slideShow, 3000)
+        newImage.src = sortedArray[0]
+        let interval = setInterval(slideShow, 1000)
       })
       .catch((error) => {
         console.log("Oh no, there's been an error!", error);
@@ -73,6 +75,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  document.getElementById('stop').addEventListener("click", stopSlideShow)
+
+  function stopSlideShow() {
+    clearInterval(interval)
+
+    console.log('stop me')
+  }
   
 });
 
