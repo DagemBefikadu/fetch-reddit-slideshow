@@ -1,9 +1,9 @@
 const requestUrl = "http://www.reddit.com/search.json?q=";
+let interval
 
 document.addEventListener("DOMContentLoaded", () => {
   let arrayUrl = [];
   let newImage = document.createElement('img')
-  let interval
   form.addEventListener("submit", (e) => {
     myFunction();
     myTitle();
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('.photolist').appendChild(newImage)
         console.log(arrayUrl);
         newImage.src = sortedArray[0]
-        let interval = setInterval(slideShow, 1000)
+        interval = setInterval(slideShow, 1000)
       })
       .catch((error) => {
         console.log("Oh no, there's been an error!", error);
@@ -49,9 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function slideShow() {
     if(start < sortedArray.length) {
+      console.log('console loggging the if statent')
       newImage.src = sortedArray[start]
       start++
     }else {
+      console.log('console loggging for the else statement')
       start = 0 
     }
   }
@@ -79,7 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function stopSlideShow() {
     clearInterval(interval)
-
+    arrayUrl = []
+    myFunction();
+    myTitle();
+    console.log(arrayUrl)
+    // interval = null
     console.log('stop me')
   }
   
